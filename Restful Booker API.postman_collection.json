@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d9293684-158d-4ca4-a86b-627a17d532cf",
+		"_postman_id": "bf713d9b-7056-437a-989d-5754d2cb38a7",
 		"name": "Restful Booker API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22449893"
+		"_exporter_id": "19047129"
 	},
 	"item": [
 		{
@@ -16,7 +16,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.collectionVariables.unset(\"variable_key\");\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -137,7 +143,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Maryams test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.booking.totalprice).to.eql(100);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -153,7 +162,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\" : \"{{firstname}}\",\n    \"lastname\" : \"{{lastname}}\",\n    \"totalprice\" : {{totalprice}},\n    \"depositpaid\" : {{depositpaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"{{checkin}}\",\n        \"checkout\" : \"{{checkout}}\"\n    },\n    \"additionalneeds\" : \"{{additionalneeds}}\"\n}"
+							"raw": "{\n    \"lastname\" : \"{{lastname}}\",\n    \"totalprice\" : {{totalprice}},\n    \"depositpaid\" : {{depositpaid}},\n    \"bookingdates\" : {\n        \"totalprice\" : 139,\n        \"checkin\" : \"{{checkin}}\",\n        \"checkout\" : \"{{checkout}}\"\n    },\n    \"additionalneeds\" : \"{{additionalneeds}}\"\n}"
 						},
 						"url": {
 							"raw": "{{rb_url}}/booking",
@@ -240,7 +249,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstname\" : \"{{firstname}}\",\n    \"lastname\" : \"{{lastname}}\",\n    \"totalprice\" : {{totalprice}},\n    \"depositpaid\" : {{depositpaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"{{checkin}}\",\n        \"checkout\" : \"{{checkout}}\"\n    },\n    \"additionalneeds\" : \"{{additionalneeds}}\"\n}"
+							"raw": "{\n    \"firstname\" : \"{{firstname}}\",\n    \"lastname\" : \"Ali\",\n    \"totalprice\" : {{totalprice}},\n    \"depositpaid\" : {{depositpaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"{{checkin}}\",\n        \"checkout\" : \"{{checkout}}\"\n    },\n    \"additionalneeds\" : \"{{additionalneeds}}\"\n}"
 						},
 						"url": {
 							"raw": "{{rb_url}}/booking/{{booking_id}}",
